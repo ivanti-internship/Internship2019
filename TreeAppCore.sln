@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeAppCore", "TreeAppCore\TreeAppCore.csproj", "{CDBD925C-8D86-48C1-BAD3-28ED5F93FFD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDBD925C-8D86-48C1-BAD3-28ED5F93FFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDBD925C-8D86-48C1-BAD3-28ED5F93FFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDBD925C-8D86-48C1-BAD3-28ED5F93FFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDBD925C-8D86-48C1-BAD3-28ED5F93FFD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E8D9051-30F1-4119-A999-DF97C990DB50}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ivanti.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TreeAppCore\\TreeAppCore.csproj
+		SccProjectName1 = TreeAppCore
+		SccLocalPath1 = TreeAppCore
+	EndGlobalSection
+EndGlobal
