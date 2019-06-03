@@ -13,7 +13,7 @@ unique_ptr<TreeNode> StaticNamesTreeReader::ConstructTree()
 	return rootNode;
 }
 
-	unique_ptr<TreeNode>StaticNamesTreeReader::ConstructTreeNode(int nodeId)
+	unique_ptr<TreeNode> StaticNamesTreeReader::ConstructTreeNode(int nodeId)
 	{
 		auto node = FindStaticNode(nodeId);
 
@@ -30,6 +30,7 @@ unique_ptr<TreeNode> StaticNamesTreeReader::ConstructTree()
 	}
 
 
+
 	StaticNamesNode StaticNamesTreeReader::FindStaticNode(int nodeId)
 	{
 		//fint the node with Id == nodeId
@@ -40,4 +41,35 @@ unique_ptr<TreeNode> StaticNamesTreeReader::ConstructTree()
 		});
 
 		return *staticNodeIt;
+	}
+
+	//ex b) ->
+
+	StaticNamesNode StaticNamesTreeReader::FindStaticNodeByName(string nodeName)
+	{
+		//fint the node with Id == nodeName
+		auto staticNodeIt = find_if(Nodes.begin(), Nodes.end(),
+			[&nodeName](const StaticNamesNode& s)
+			{
+				return s.Description == nodeName;
+			});
+
+		return *staticNodeIt;
+	}
+
+	list<StaticNamesNode> StaticNamesTreeReader::ListNodeSiblings(string nodeName)
+	{
+		list<StaticNamesNode> result;
+		StaticNamesNode target = FindStaticNodeByName(nodeName);
+
+
+		for (auto j = Nodes.begin(); j != Nodes.end(); j++) {
+			if (target.Id != j->Id && target.ParentId == j->ParentId) {
+
+				StaticNamesNode aux = FindStaticNode(j->Id);
+				result.push_back(aux);
+			}
+		}
+
+		return result;
 	}

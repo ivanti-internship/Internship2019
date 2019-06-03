@@ -30,7 +30,7 @@ class StaticNamesTreeReader :public  ITreeReader
 {
 private:
 
-	const   list<StaticNamesNode> Nodes =
+	const  list<StaticNamesNode> Nodes =
 	{
 		StaticNamesNode(10, "Radacina", -1),
 		StaticNamesNode(100, "Popescu",10),
@@ -51,9 +51,9 @@ private:
 
 public:
 	unique_ptr<TreeNode> ConstructTree();
-
-private:
+	StaticNamesNode FindStaticNodeByName(string nodeName);
 	unique_ptr<TreeNode> ConstructTreeNode(int nodeId);
 	StaticNamesNode FindStaticNode(int nodeId);
+	list<StaticNamesNode> ListNodeSiblings(string nodeName);
 };
 

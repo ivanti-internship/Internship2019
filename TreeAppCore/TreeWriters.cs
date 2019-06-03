@@ -60,7 +60,10 @@ namespace TreeAppCore
         {
             var sqlConn = new SqlConnection(_connectionString);
             var sqlComm = new SqlCommand("", sqlConn);
+            sqlConn.Open();
             sqlComm.CommandText = "delete from TreeNodes";
+
+            
             sqlComm.ExecuteNonQuery();
 
             sqlComm.CommandText = "delete from TreeNodeRelations";

@@ -32,12 +32,14 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 		}
 	}
 
+
 	void DatabaseTreeWriter::WriteNodeInfo(TreeNode node)
 	{
 		auto databaseConnection = DtabaseUtil::openDatabaseConnection(_databaseName);
 		string query = "insert into TreeNodes(Id, Description) values(" + to_string(node.Id) + ", '" + node.Description + "')";
 		DtabaseUtil::ExecuteNonQuery(query, databaseConnection);
 	}
+
 
 	void DatabaseTreeWriter::WriteNodesRelation(int nodeId, int parentId)
 	{
