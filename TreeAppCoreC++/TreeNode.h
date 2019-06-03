@@ -1,7 +1,7 @@
-#pragma once
+
 #include<string> 
 #include <list>
-
+#include <memory>
 using namespace std; 
 class TreeNode final
 {
