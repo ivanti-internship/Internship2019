@@ -12,5 +12,6 @@ public:
 	static void ExecuteNonQuery(string queryString, sqlite3 * databseConnection);
 	static sqlite3* openDatabaseConnection(string dabaseName);
 	static void closeDatabseConnection(sqlite3 * databseConnection);
+	static void ExecuteQuery(string queryString, sqlite3* databaseConnection, sqlite3_callback callback);
 };
 

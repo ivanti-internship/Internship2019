@@ -13,45 +13,43 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 
 	void DatabaseTreeWriter::WriteTree(TreeNode rootNode)
 	{
-		CleanupTables();
-
-		WriteNode(rootNode, TreeNode::ROOT_NODE_ID);
+		sqlite3* conn = DtabaseUtil::openDatabaseConnection(_databaseName);
+		CleanupTables(conn);
+		WriteNode(rootNode, TreeNode::ROOT_NODE_ID, conn);
+		DtabaseUtil::closeDatabseConnection(conn);
 	}
 
-	void DatabaseTreeWriter::WriteNode(TreeNode node, int parentId)
+	void DatabaseTreeWriter::WriteNode(TreeNode node, int parentId, sqlite3* conn)
 	{
-		WriteNodeInfo(node);
+		WriteNodeInfo(node, conn);
 		if (parentId != TreeNode::ROOT_NODE_ID)
 		{
-			WriteNodesRelation(node.Id, parentId);
+			WriteNodesRelation(node.Id, parentId, conn);
 		}
 
 		for (auto child : node.Children)
 		{
-			WriteNode(*child, node.Id);
+			WriteNode(*child, node.Id, conn);
 		}
 	}
 
-	void DatabaseTreeWriter::WriteNodeInfo(TreeNode node)
+	void DatabaseTreeWriter::WriteNodeInfo(TreeNode node, sqlite3* conn)
 	{
-		auto databaseConnection = DtabaseUtil::openDatabaseConnection(_databaseName);
 		string query = "insert into TreeNodes(Id, Description) values(" + to_string(node.Id) + ", '" + node.Description + "')";
-		DtabaseUtil::ExecuteNonQuery(query, databaseConnection);
+		DtabaseUtil::ExecuteNonQuery(query, conn);
 	}
 
-	void DatabaseTreeWriter::WriteNodesRelation(int nodeId, int parentId)
+	void DatabaseTreeWriter::WriteNodesRelation(int nodeId, int parentId, sqlite3* conn)
 	{
-		auto databaseConnection = DtabaseUtil::openDatabaseConnection(_databaseName);
 		string query = "insert into TreeNodeRelations(Id, ParentId) values(" + to_string(nodeId) + ", " + to_string(parentId) + ")";
-		DtabaseUtil::ExecuteNonQuery(query, databaseConnection);
+		DtabaseUtil::ExecuteNonQuery(query, conn);
 	}
 
-	void DatabaseTreeWriter::CleanupTables()
+	void DatabaseTreeWriter::CleanupTables(sqlite3* conn)
 	{
-		auto databaseConnection = DtabaseUtil::openDatabaseConnection(_databaseName);
 		string query = "delete from TreeNodes";
-		DtabaseUtil::ExecuteNonQuery(query, databaseConnection);
+		DtabaseUtil::ExecuteNonQuery(query, conn);
 
 		query = "delete from TreeNodeRelations";
-		DtabaseUtil::ExecuteNonQuery(query, databaseConnection);
+		DtabaseUtil::ExecuteNonQuery(query, conn);
 	}

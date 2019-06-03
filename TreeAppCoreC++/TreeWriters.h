@@ -7,7 +7,7 @@ class ITreeWriter
 public:
 	ITreeWriter() {}
 	virtual ~ITreeWriter() {}
-	virtual void WriteTree(TreeNode rootNode) = 0;
+	virtual void WriteTree(TreeNode& rootNode) = 0;
 };
 
 
@@ -21,11 +21,11 @@ public:
 	virtual ~DatabaseTreeWriter();
 
 public:
-	void WriteTree(TreeNode rootNode);
+	void WriteTree(TreeNode& rootNode);
 
 private:
-	void WriteNode(TreeNode node, int parentId);
-	void WriteNodeInfo(TreeNode node);
-	void WriteNodesRelation(int nodeId, int parentId);
-	void CleanupTables();
+	void WriteNode(TreeNode& node, int parentId, sqlite3* conn);
+	void WriteNodeInfo(TreeNode& node, sqlite3* conn);
+	void WriteNodesRelation(int nodeId, int parentId, sqlite3* conn);
+	void CleanupTables(sqlite3* conn);
 };
