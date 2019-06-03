@@ -30,7 +30,7 @@ class StaticNamesTreeReader :public  ITreeReader
 {
 private:
 
-	const   list<StaticNamesNode> Nodes =
+	const list<StaticNamesNode> Nodes =
 	{
 		StaticNamesNode(10, "Radacina", -1),
 		StaticNamesNode(100, "Popescu",10),

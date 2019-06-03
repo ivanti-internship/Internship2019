@@ -40,8 +40,8 @@ sqlite3* DtabaseUtil::openDatabaseConnection(string dabaseName)
 {
 	sqlite3* DB;
 	int exit = sqlite3_open(dabaseName.c_str(), &DB);
-	delete(DB);
-	return  DB;
+	//delete(DB);
+	return DB;
 }
 
 

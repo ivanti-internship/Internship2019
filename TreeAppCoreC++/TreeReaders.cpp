@@ -15,6 +15,7 @@ unique_ptr<TreeNode> StaticNamesTreeReader::ConstructTree()
 
 	unique_ptr<TreeNode>StaticNamesTreeReader::ConstructTreeNode(int nodeId)
 	{
+
 		auto node = FindStaticNode(nodeId);
 
 		auto treeNode = make_unique<TreeNode>(node.Id, node.Description);

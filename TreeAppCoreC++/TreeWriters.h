@@ -10,7 +10,6 @@ public:
 	virtual void WriteTree(TreeNode rootNode) = 0;
 };
 
-
 class DatabaseTreeWriter : ITreeWriter
 {
 private:
