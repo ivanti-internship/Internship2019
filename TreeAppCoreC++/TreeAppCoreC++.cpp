@@ -3,25 +3,24 @@
 
 #include "pch.h"
 #include <iostream>
+#include <memory>
 
 #include "TreeReaders.h"
 #include "TreeWriters.h"
+
+
 int main()
 {
-
 	std::cout << "Constructing tree...\n";
 	auto tree = StaticNamesTreeReader().ConstructTree();
-
 	DatabaseTreeWriter treeWriter ("treenodes.db");
 	treeWriter.WriteTree(*tree.get());
 
-	std::cout <<"Done.";
-	
-	
+	std::cout << "Done.";
+
 	//list the siblings of the node with the specified name (e.g. George)
 	//TODO: uncomment line and implement method
 	//var nodeGeorge = tree.ListNodeSiblings("George");
-
-	
+	return 0;
 }
 

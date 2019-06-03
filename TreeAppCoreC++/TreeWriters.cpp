@@ -14,7 +14,7 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 	void DatabaseTreeWriter::WriteTree(TreeNode rootNode)
 	{
 		CleanupTables();
-
+		
 		WriteNode(rootNode, TreeNode::ROOT_NODE_ID);
 	}
 
@@ -50,6 +50,7 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 	{
 		auto databaseConnection = DtabaseUtil::openDatabaseConnection(_databaseName);
 		string query = "delete from TreeNodes";
+		//query.open()
 		DtabaseUtil::ExecuteNonQuery(query, databaseConnection);
 
 		query = "delete from TreeNodeRelations";

@@ -1,7 +1,9 @@
-
+#pragma once
 #include<string> 
 #include <list>
 #include <memory>
+#include <iostream>
+
 using namespace std; 
 class TreeNode final
 {
@@ -12,5 +14,6 @@ public:
 	int Id;
 	string Description;
 	list<shared_ptr<TreeNode>> Children;
+	void ListNodeSiblings(std::list<shared_ptr<TreeNode>> Children, std::string nume);
 };
 

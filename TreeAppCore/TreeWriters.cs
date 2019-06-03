@@ -44,6 +44,7 @@ namespace TreeAppCore
             var sqlComm = new SqlCommand($"insert into TreeNodes (Id, Description) values (@id, @description)", sqlConn);
             sqlComm.Parameters.AddWithValue("@id", node.Id);
             sqlComm.Parameters.AddWithValue("@description", node.Description);
+            sqlComm.Connection.Open();
             sqlComm.ExecuteNonQuery();
         }
 
@@ -53,6 +54,7 @@ namespace TreeAppCore
             var sqlComm = new SqlCommand($"insert into TreeNodeRelations (Id, ParentId) values (@id, @parentId)", sqlConn);
             sqlComm.Parameters.AddWithValue("@id", nodeId);
             sqlComm.Parameters.AddWithValue("@parentId", parentId);
+            sqlComm.Connection.Open();
             sqlComm.ExecuteNonQuery();
         }
 
@@ -61,6 +63,7 @@ namespace TreeAppCore
             var sqlConn = new SqlConnection(_connectionString);
             var sqlComm = new SqlCommand("", sqlConn);
             sqlComm.CommandText = "delete from TreeNodes";
+            sqlComm.Connection.Open();
             sqlComm.ExecuteNonQuery();
 
             sqlComm.CommandText = "delete from TreeNodeRelations";

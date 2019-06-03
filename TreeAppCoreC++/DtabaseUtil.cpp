@@ -24,8 +24,8 @@ void DtabaseUtil::ExecuteNonQuery(string queryString, sqlite3 *databseConnection
 {
 
 	char* messaggeError;
-
-	int exit = sqlite3_exec(databseConnection, queryString.c_str(), NULL, 0, &messaggeError);
+	if(sqlite3_exec(databseConnection, queryString.c_str(), NULL, 0, &messaggeError))
+		int exit = sqlite3_exec(databseConnection, queryString.c_str(), NULL, 0, &messaggeError);
 	if (exit != SQLITE_OK) {
 		//std::cerr << "Error Insert" << std::endl;
 		sqlite3_free(messaggeError);
@@ -40,7 +40,7 @@ sqlite3* DtabaseUtil::openDatabaseConnection(string dabaseName)
 {
 	sqlite3* DB;
 	int exit = sqlite3_open(dabaseName.c_str(), &DB);
-	delete(DB);
+	//delete(DB);
 	return  DB;
 }
 
