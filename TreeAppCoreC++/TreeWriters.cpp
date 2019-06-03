@@ -15,6 +15,8 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 	{
 		CleanupTables();
 
+
+
 		WriteNode(rootNode, TreeNode::ROOT_NODE_ID);
 	}
 

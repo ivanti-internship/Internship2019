@@ -11,10 +11,18 @@ namespace TreeAppCore
     public class DatabaseTreeWriter : ITreeWriter
     {
         private readonly string _connectionString;
+        private SqlConnection sqlConn;
 
         public DatabaseTreeWriter(string connectionString)
         {
             _connectionString = connectionString;
+            sqlConn = new SqlConnection(_connectionString);
+            sqlConn.Open();
+        }
+
+        ~DatabaseTreeWriter()
+        {
+            sqlConn.Close();
         }
 
         public void WriteTree(TreeNode rootNode)
@@ -22,6 +30,7 @@ namespace TreeAppCore
             CleanupTables();
 
             WriteNode(rootNode, null);
+
         }
 
         private void WriteNode(TreeNode node, int? parentId)
@@ -40,31 +49,37 @@ namespace TreeAppCore
 
         private void WriteNodeInfo(TreeNode node)
         {
-            var sqlConn = new SqlConnection(_connectionString);
+            //var sqlConn = new SqlConnection(_connectionString);
+            //sqlConn.Open();
             var sqlComm = new SqlCommand($"insert into TreeNodes (Id, Description) values (@id, @description)", sqlConn);
             sqlComm.Parameters.AddWithValue("@id", node.Id);
             sqlComm.Parameters.AddWithValue("@description", node.Description);
             sqlComm.ExecuteNonQuery();
+            //sqlConn.Close();
         }
 
         private void WriteNodesRelation(int nodeId, int parentId)
         {
-            var sqlConn = new SqlConnection(_connectionString);
+            //var sqlConn = new SqlConnection(_connectionString);
+            //sqlConn.Open();
             var sqlComm = new SqlCommand($"insert into TreeNodeRelations (Id, ParentId) values (@id, @parentId)", sqlConn);
             sqlComm.Parameters.AddWithValue("@id", nodeId);
             sqlComm.Parameters.AddWithValue("@parentId", parentId);
             sqlComm.ExecuteNonQuery();
+            //sqlConn.Close();
         }
 
         private void CleanupTables()
         {
-            var sqlConn = new SqlConnection(_connectionString);
+            //var sqlConn = new SqlConnection(_connectionString);
+            //sqlConn.Open();
             var sqlComm = new SqlCommand("", sqlConn);
             sqlComm.CommandText = "delete from TreeNodes";
             sqlComm.ExecuteNonQuery();
 
             sqlComm.CommandText = "delete from TreeNodeRelations";
             sqlComm.ExecuteNonQuery();
+            //sqlConn.Close();
         }
     }
 }

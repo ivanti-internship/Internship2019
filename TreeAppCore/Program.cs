@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace TreeAppCore
 {
+
     class Program
     {
         static void Main(string[] args)
@@ -20,7 +23,31 @@ namespace TreeAppCore
                 InitialCatalog = "tnodes"
             };
             var treeWriter = new DatabaseTreeWriter(connStringBuilder.ConnectionString);
-            treeWriter.WriteTree(tree);
+
+            var nodeGeorge = tree.ListNodeSiblings("George");
+            try
+            {
+                for (int i = 0; i < nodeGeorge.Capacity - 1; i++)
+                {
+                    Console.WriteLine(nodeGeorge[i].Description);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Nu au fost gasite persoane");
+            }
+
+
+            List<TreeNode> list = new List<TreeNode>();
+
+            TreeToList(tree,ref list); //Creare de lista
+            
+            list.Sort((x, y) => x.Description.CompareTo(y.Description)); //Sortare de lista
+
+            for(int i = 0; i< list.Count; i++)
+            {
+                Console.WriteLine(list[i].Id + " " + list[i].Description);
+            }
 
             Console.WriteLine("Done.");
 
@@ -29,6 +56,17 @@ namespace TreeAppCore
             //var nodeGeorge = tree.ListNodeSiblings("George");
 
             Console.ReadKey();
+        }
+
+        private static void TreeToList(TreeNode tree, ref List<TreeNode> list)
+        {
+            //List<TreeNode> list = new List<TreeNode>;
+            list.Add(tree);
+
+            foreach (var child in tree.Children ?? Enumerable.Empty<TreeNode>())
+            {
+                TreeToList(child, ref list);
+            }
         }
     }
 }

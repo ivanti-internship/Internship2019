@@ -12,11 +12,16 @@ int main()
 	std::cout << "Constructing tree...\n";
 	auto tree = StaticNamesTreeReader().ConstructTree();
 
+
 	DatabaseTreeWriter treeWriter ("treenodes.db");
 	treeWriter.WriteTree(*tree.get());
 
+	//auto nodeGeorge = tree.ListNodeSiblings("George");
+
+
+
 	std::cout <<"Done.";
-	
+
 	
 	//list the siblings of the node with the specified name (e.g. George)
 	//TODO: uncomment line and implement method
