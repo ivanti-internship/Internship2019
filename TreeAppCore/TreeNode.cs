@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TreeAppCore
 {
@@ -18,12 +19,11 @@ namespace TreeAppCore
             
             while (queue.Count != 0) {
                 TreeNode node = queue.Dequeue();
-                if (node.Description == key) {
-                    return new List<TreeNode>(node.Children);
-                }
-
                 foreach (TreeNode child in node.Children) {
                     queue.Enqueue(child);
+                    if (child.Description == key) {
+                        return node.Children.Where(n => n.Description != key).ToList();
+                    }
                 }
             }
 
