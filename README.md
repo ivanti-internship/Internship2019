@@ -8,9 +8,10 @@ Cerintele de mai jos cauta sa acopere atat lipsurile de implementare cat si even
 5.  (Optional)Din tree-ul obtinut din StaticNamesTreeReader().ConstructTree() obtineti o lista si sortati-o ascendent dupa TreeNode.Description.
 
 
-Test pull request
 
 Pentru a comite modificarile executati:
+
+logati-va cu ivanti.internship@outlook.com, parola Resforever123!
 
 git checkout -b Nume.Prenume
 git add .
