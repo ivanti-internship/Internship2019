@@ -7,4 +7,11 @@ Cerintele de mai jos cauta sa acopere atat lipsurile de implementare cat si even
 4.	In contextul limbajului C# exista posibilitatea de a folosi un sub-limbaj structurat pentru lucrul cu colectii (LINQ); de exemplu „Nodes.Where(...)...” sau „Nodes.Single...”. Gasiti eventuale probleme sau optimizari in lucrul cu colectii.
 5.  (Optional)Din tree-ul obtinut din StaticNamesTreeReader().ConstructTree() obtineti o lista si sortati-o ascendent dupa TreeNode.Description.
 
-test pull
+
+
+Pentru a comite modificarile executati:
+
+git checkout -b Nume.Prenume
+git add .
+git commit -m "ce vreti voi"
+git push -u origin Nume.Prenume
