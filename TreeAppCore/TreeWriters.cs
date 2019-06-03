@@ -43,8 +43,7 @@ namespace TreeAppCore
             }
         }
 
-        private void WriteNodesRelation(int nodeId, int parentId)
-        {
+        private void WriteNodesRelation(int nodeId, int parentId) {
             using (SqlConnection sqlConn = new SqlConnection(_connectionString)) {
                 var sqlComm = new SqlCommand($"insert into TreeNodeRelations (Id, ParentId) values (@id, @parentId)", sqlConn);
                 sqlConn.Open();
