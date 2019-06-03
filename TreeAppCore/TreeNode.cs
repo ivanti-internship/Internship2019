@@ -16,7 +16,6 @@ namespace TreeAppCore
             Queue<TreeNode> queue = new Queue<TreeNode>();
 
             queue.Enqueue(this);
-            
             while (queue.Count != 0) {
                 TreeNode node = queue.Dequeue();
                 foreach (TreeNode child in node.Children) {
@@ -35,7 +34,6 @@ namespace TreeAppCore
             List<TreeNode> list = new List<TreeNode>();
 
             queue.Enqueue(this);
-
             while (queue.Count != 0) {
                 TreeNode node = queue.Dequeue();
 
@@ -44,7 +42,6 @@ namespace TreeAppCore
                     queue.Enqueue(child);
                 }
             }
-
             list.Sort((x, y) => x.Description.CompareTo(y.Description));
             return list;
         }

@@ -44,7 +44,7 @@ namespace TreeAppCore
             //list the siblings of the node with the specified name (e.g. George)
             //TODO: uncomment line and implement method
 
-            var nodeGeorge = tree.ListNodeSiblings("Ivanciuc");
+            var nodeGeorge = tree.ListNodeSiblings("Panageu");
             try {
                 foreach (var child in nodeGeorge) {
                     Console.WriteLine(child.Description);
@@ -54,6 +54,7 @@ namespace TreeAppCore
             }
 
             Console.WriteLine("------------------------------------");
+
             // lista obtinuta din tree
             var nodeList = tree.ToList();
             foreach (var child in nodeList) {
