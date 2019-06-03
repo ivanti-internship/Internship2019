@@ -13,7 +13,12 @@ Pentru a comite modificarile executati:
 
 logati-va cu ivanti.internship@outlook.com, parola Resforever123!
 
+
 git checkout -b Nume.Prenume
+
 git add .
+
 git commit -m "ce vreti voi"
+
 git push -u origin Nume.Prenume
+
