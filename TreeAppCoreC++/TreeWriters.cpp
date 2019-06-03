@@ -11,7 +11,7 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 {
 }
 
-	void DatabaseTreeWriter::WriteTree(TreeNode rootNode)
+	void DatabaseTreeWriter::WriteTree(TreeNode& rootNode)
 	{
 		sqlite3* conn = DtabaseUtil::openDatabaseConnection(_databaseName);
 		CleanupTables(conn);
@@ -19,7 +19,7 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 		DtabaseUtil::closeDatabseConnection(conn);
 	}
 
-	void DatabaseTreeWriter::WriteNode(TreeNode node, int parentId, sqlite3* conn)
+	void DatabaseTreeWriter::WriteNode(TreeNode& node, int parentId, sqlite3* conn)
 	{
 		WriteNodeInfo(node, conn);
 		if (parentId != TreeNode::ROOT_NODE_ID)
@@ -33,7 +33,7 @@ DatabaseTreeWriter::~DatabaseTreeWriter()
 		}
 	}
 
-	void DatabaseTreeWriter::WriteNodeInfo(TreeNode node, sqlite3* conn)
+	void DatabaseTreeWriter::WriteNodeInfo(TreeNode& node, sqlite3* conn)
 	{
 		string query = "insert into TreeNodes(Id, Description) values(" + to_string(node.Id) + ", '" + node.Description + "')";
 		DtabaseUtil::ExecuteNonQuery(query, conn);
