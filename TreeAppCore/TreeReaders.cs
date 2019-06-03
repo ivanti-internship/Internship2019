@@ -45,12 +45,11 @@ namespace TreeAppCore
                 new StaticNamesNode(222, "Ioana", 200),
             };
 
-        public TreeNode ConstructTree()
-        {
-            var rootNodeId = Nodes.Where(n => n.ParentId == null).First().Id;
+        public TreeNode ConstructTree() {
+            //var rootNodeId = Nodes.Where(n => n.ParentId == null).First().Id;
 
-            var rootNode = ConstructTreeNode(rootNodeId);
-
+            var rootNodeId = Nodes.SingleOrDefault(n => n.ParentId == null).Id; // Ar trebui sa fie o singura radacina, asa ca aruncam
+            var rootNode = ConstructTreeNode(rootNodeId);                      // exceptie in cazul in care sunt mai multe potentiale radacini
             return rootNode;
         }
 
@@ -63,7 +62,7 @@ namespace TreeAppCore
             treeNode.Children = Nodes
                 .Where(n => n.ParentId == staticNode.Id)
                 .Select(n => ConstructTreeNode(n.Id))
-                .ToList();
+                .ToList();  
 
             return treeNode;
         }
